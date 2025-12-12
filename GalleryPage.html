@@ -10,7 +10,7 @@
 <body>
 <header>
     <h1 align="center"> 
-        <img src="Carimages/CarGallerylogo.webp"width="150" alt="CarGallerylogo"align="middle">Car Gallery </h1>
+        <img src="Carimages/CarGallerylogo.webp"width="150" alt="CarGallerylogo"align="middle"class="logo">Car Gallery </h1>
            <hr>
 </header>
 <nav align="right">
@@ -26,34 +26,31 @@
         Its aerodynamics, transmission, and power output make it one of the most advanced 
         hypercars in the world.
     </p>
-<table>
-<tr>
-    <td>
-        <img src="Carimages/koenigsegg1.webp" width="350"><br><br>
-</td>
-<td>
-    <img src="Carimages/koenigsegg2.jpg" width="350">
-</td>
-<td>
-    <img src="Carimages/koenigsegg3.jpg"width="350">
-    </td>
-    </tr></table>
-     <table >
-        <tr>
-            <td >
-                <iframe width="350" height="250" src="Carvideos/ko1.mp4" allowfullscreen></iframe>
-                <p><b>Jesko 0–400–0 km/h World Record</b></p>
-            </td>
-            <td>
-                 <iframe width="350" height="250" src="Carvideos/ko2.mp4" allowfullscreen></iframe>
-                <p><b>Precision engineering at its finest</b></p>
-            </td>
-             <td>
-                 <iframe width="350" height="250" src="Carvideos/ko3.mp4"allowfullscreen autoplay></iframe>
-                <p><b>A hypercar built for record-breaking speed</b></p>
-            </td>
-        </tr>
-    </table>
+<div class="gallery-row">
+        <div class="gallery-item">
+            <img src="Carimages/koenigsegg1.webp" alt="Koenigsegg Jesko front view">
+        </div>
+        <div class="gallery-item">
+            <img src="Carimages/koenigsegg2.jpg" alt="Koenigsegg Jesko side view">
+        </div>
+        <div class="gallery-item">
+            <img src="Carimages/koenigsegg3.jpg" alt="Koenigsegg Jesko rear view">
+        </div>
+    </div>
+    <div class="video-container">
+        <div class="video-item">
+            <iframe src="Carvideos/ko1.mp4" allowfullscreen></iframe>
+            <p><b>Jesko 0–400–0 km/h World Record</b></p>
+        </div>
+        <div class="video-item">
+            <iframe src="Carvideos/ko2.mp4" allowfullscreen></iframe>
+            <p><b>Precision engineering at its finest</b></p>
+        </div>
+        <div class="video-item">
+            <iframe src="Carvideos/ko3.mp4" allowfullscreen></iframe>
+            <p><b>A hypercar built for record-breaking speed</b></p>
+        </div>
+    </div>
 </section>
 <hr>
 <section>
