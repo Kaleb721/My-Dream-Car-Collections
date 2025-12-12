@@ -293,3 +293,38 @@ footer {
     border-top: 1px solid #2a2f35;
     color: #b0b0b0;
 }
+@media (max-width: 768px) {
+    body {
+        padding: 0 15px;
+    }
+    h1 {
+        font-size: 2rem;
+        flex-direction: column;
+    }
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    nav a {
+        margin: 5px;
+        padding: 6px 12px;
+    }
+    section {
+        padding: 20px;
+    }
+    .gallery-row,
+    .video-container {
+        flex-direction: column;
+    }
+    .gallery-item,
+    .video-item {
+        min-width: 100%;
+    }
+    iframe {
+        height: 200px;
+    }
+    .performance-table {
+        display: block;
+        overflow-x: auto;
+    }
+}

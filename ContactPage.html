@@ -21,27 +21,29 @@
     <h2>Your Suggestion</h2>
     <form >
       <div class="form-group">
-      <label for="name">Your Name *</label><br>
-      <input type="text" id="name" name="name"><br><br>
+      <label for="name">Your Name *</label>
+      <input type="text" id="name" name="name">
 </div>
 <div class="form-group">
-      <label for="email">Email *</label><br>
-      <input type="email" id="email" name="email"><br><br>
+      <label for="email">Email *</label>
+      <input type="email" id="email" name="email">
 </div>
 </div>
 <div class="form-group">
-      <label>Category *</label><br>
+      <label>Category *</label>
+      <div class="radio-group">
       <label><input type="radio" name="category" value="Hyper-car" required> Hyper-car</label>
       <label><input type="radio" name="category" value="Muscle"> Muscle</label>
       <label><input type="radio" name="category" value="JDM"> JDM</label>
-      <label><input type="radio" name="category" value="EV"> EV</label><br><br>
+      <label><input type="radio" name="category" value="EV"> EV</label>
+</div>
 </div>
 <div class="form-group">
-      <label for="make">Make & Model *</label><br>
-      <input type="text" id="make" name="make"><br><br>
+      <label for="make">Make & Model *</label>
+      <input type="text" id="make" name="make">
 </div>
 <div class="form-group">
-      <label for="year">Year *</label><br>
+      <label for="year">Year *</label>
       <select id="year" name="year">
         <option>2025</option>
         <option>2024</option>
@@ -51,19 +53,21 @@
         <option>2020</option>
         <option>1970s</option>
         <option>1960s</option>
-      </select><br><br>
+      </select>
 </div>
-<div class="form-group">
-      <label>Features (check all that apply)</label><br>
+<div class="form-group">  
+      <label>Features (check all that apply)</label>
+       <div class="checkbox-group">
       <label><input type="checkbox" name="features" value="Turbo"> Turbo</label>
       <label><input type="checkbox" name="features" value="Manual"> Manual Gearbox</label>
       <label><input type="checkbox" name="features" value="AWD"> AWD</label>
       <label><input type="checkbox" name="features" value="RWD"> RWD</label>
-      <label><input type="checkbox" name="features" value="V8"> V8</label><br><br>
+      <label><input type="checkbox" name="features" value="V8"> V8</label>
+</div>
 </div>
 <div class="form-group">
-      <label for="reason">Why Should I Add It? (short review) *</label><br>
-      <textarea id="reason" name="reason" rows="5" cols="40" placeholder="Convince me..."></textarea><br><br>
+      <label for="reason">Why Should I Add It? (short review) *</label>
+      <textarea id="reason" name="reason" rows="5" cols="40" placeholder="Convince me..."></textarea>
 </div>
 <div class="form-group">
       <button type="submit">Submit Suggestion</button>
