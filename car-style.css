@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -18,10 +19,12 @@ h1, h2, h3, h4 {
     margin-bottom: 20px;
 }
 h1 {
-    font-size: 2.5rem;
-    letter-spacing: 1px;
+        font-family: 'Racing Sans One', cursive;
+    font-size: 3.2rem;
+    color: #FF3B30;
+    text-shadow: 3px 3px 0 #000, 6px 6px 0 rgba(0,0,0,0.2);
+    letter-spacing: 2px;
     padding: 20px 0;
-    color: #ff3B30;
 }
 h2 {
     font-size: 2rem;
@@ -50,12 +53,30 @@ header {
     padding: 20px 0;
     border-bottom: 1px solid #2a2f35;
     margin-bottom: 20px;
+       background-image: url('Carimages/carbackground1.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    background-color: rgba(15, 20, 25, 0.9); 
+    padding: 40px 0; 
+    position: relative;
+}
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 20, 25, 0.85);
 }
 header h1 {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 15px;
+      position: relative;
+    z-index: 1;
 }
 nav {
     background-color: #1a2029;
