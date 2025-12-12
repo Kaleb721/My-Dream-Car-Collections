@@ -328,3 +328,27 @@ footer {
         overflow-x: auto;
     }
 }
+hr {
+    border: none;
+    height: 1px;
+    background-color: #2a2f35;
+    margin: 25px 0;
+}
+.logo {
+    vertical-align: middle;
+}
+.car-display-img {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto;
+}
+.youtube-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.youtube-links img {
+    width: 50px;
+    height: 50px;
+}
