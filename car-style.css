@@ -44,3 +44,35 @@ a {
 a:hover {
     color: #ff6b35;
 }
+header {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #2a2f35;
+    margin-bottom: 20px;
+}
+header h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+nav {
+    background-color: #1a2029;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+nav a {
+    margin: 0 15px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+nav a:hover {
+    background-color: #2a2f35;
+    color: #ff6b35;
+}
