@@ -269,3 +269,27 @@ input[type="checkbox"] {
     margin-right: 20px;
     font-weight: normal;
 }
+button {
+    background: linear-gradient(to right, #ff6b35, #ff8c5a);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);
+}
+button:hover {
+    background: linear-gradient(to right, #ff8c5a, #ff6b35);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(255, 107, 53, 0.4);
+}
+footer {
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 40px;
+    border-top: 1px solid #2a2f35;
+    color: #b0b0b0;
+}
