@@ -163,5 +163,69 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             updateTotalLikes();
-        }}
+        }
+            function handleLikeClick(carId, carName) {
+            const carLikes = JSON.parse(localStorage.getItem('carLikes'));
+            const userLikes = JSON.parse(localStorage.getItem('userCarLikes') || '{}');
+            const button = document.querySelector(`.like-button[data-car-id="${carId}"]`);
+            const counter = button?.parentNode.querySelector('.likes-counter span:first-child');
+            if (userLikes[carId]) {
+                userLikes[carId] = false;
+                carLikes[carId] = Math.max(0, carLikes[carId] - 1);
+                button.innerHTML = '<span class="like-icon">🤍</span><span class="like-text">Like</span>';
+                button.classList.remove('liked');
+                showLikeNotification(`Removed like from ${carName}`, 'info');
+            } else {
+                userLikes[carId] = true;
+                carLikes[carId] = (carLikes[carId] || 0) + 1;
+                button.innerHTML = '<span class="like-icon">❤️</span><span class="like-text">Liked</span>';
+                button.classList.add('liked');
+                showLikeNotification(`You liked ${carName}!`, 'success');
+            }
+            localStorage.setItem('carLikes', JSON.stringify(carLikes));
+            localStorage.setItem('userCarLikes', JSON.stringify(userLikes));
+            if (counter) {
+                counter.textContent = carLikes[carId];
+            }
+            updateTotalLikes();
+        }
+        function updateTotalLikes() {
+            const carLikes = JSON.parse(localStorage.getItem('carLikes'));
+            let totalLikes = 0;
+            for (const carId in carLikes) {
+                totalLikes += carLikes[carId];
+            }
+            let totalLikesElement = document.getElementById('totalLikes');
+            if (!totalLikesElement) {
+                totalLikesElement = document.createElement('div');
+                totalLikesElement.id = 'totalLikes';
+                const footer = document.querySelector('footer');
+                if (footer) footer.appendChild(totalLikesElement);
+            }
+            
+            totalLikesElement.innerHTML = `🔥 Total Likes: <span>${totalLikes}</span>`;
+        }
+        function showLikeNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = 'like-notification';
+            notification.textContent = message;
+
+            if (type === 'success') {
+                notification.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+            } else {
+                notification.style.background = 'linear-gradient(135deg, #ff9800, #ff5722)';
+            }
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.transform = 'translateY(0)';
+                notification.style.opacity = '1';
+            }, 10);
+            setTimeout(() => {
+                notification.style.transform = 'translateY(100px)';
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+        addLikeButtons();
+    }
 });
