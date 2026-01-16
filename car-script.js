@@ -227,5 +227,71 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 3000);
         }
         addLikeButtons();
+            const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                let isValid = true;
+                const errorMessages = [];
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const categoryInputs = document.querySelectorAll('input[name="category"]');
+                const makeInput = document.getElementById('make');
+                const yearSelect = document.getElementById('year');
+                const reasonTextarea = document.getElementById('reason');
+                if (!nameInput.value.trim()) {
+                    isValid = false;
+                    highlightError(nameInput, 'Name is required');
+                    errorMessages.push('Name is required');
+                } else {
+                    removeError(nameInput);
+                }
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailInput.value.trim() || !emailPattern.test(emailInput.value)) {
+                    isValid = false;
+                    highlightError(emailInput, 'Valid email is required');
+                    errorMessages.push('Valid email is required');
+                } else {
+                    removeError(emailInput);
+                }
+                let categorySelected = false;
+                categoryInputs.forEach(input => {
+                    if (input.checked) categorySelected = true;
+                });
+                if (!categorySelected) {
+                    isValid = false;
+                    const categoryGroup = document.querySelector('.radio-group');
+                    highlightError(categoryGroup, 'Please select a category');
+                    errorMessages.push('Category selection is required');
+                }
+                if (!makeInput.value.trim()) {
+                    isValid = false;
+                    highlightError(makeInput, 'Make & Model is required');
+                    errorMessages.push('Make & Model is required');
+                } else {
+                    removeError(makeInput);
+                }
+                if (!yearSelect.value) {
+                    isValid = false;
+                    highlightError(yearSelect, 'Year is required');
+                    errorMessages.push('Year selection is required');
+                } else {
+                    removeError(yearSelect);
+                }
+                if (!reasonTextarea.value.trim() || reasonTextarea.value.trim().length < 20) {
+                    isValid = false;
+                    highlightError(reasonTextarea, 'Please provide a detailed reason (at least 20 characters)');
+                    errorMessages.push('Detailed reason is required (minimum 20 characters)');
+                } else {
+                    removeError(reasonTextarea);
+                }
+                if (isValid) {
+                    showFormMessage('success', '🎉 Suggestion Submitted Successfully!<p>Thank you for your car suggestion. We\'ll review it and consider adding it to our collection!</p>');
+                    setTimeout(() => contactForm.reset(), 3000);
+                } else {
+                    showFormMessage('error', `<h3>⚠️ Please fix the following errors:</h3><ul>${errorMessages.map(error => `<li>${error}</li>`).join('')}</ul>`);
+                }
+            });
+        }  
     }
 });

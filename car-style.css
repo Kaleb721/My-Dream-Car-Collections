@@ -374,3 +374,84 @@ hr {
     width: 50px;
     height: 50px;
 }
+#modeToggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+#modeToggle:hover {
+    transform: scale(1.1) rotate(30deg);
+}
+
+.mode-notification,
+.like-notification {
+    position: fixed;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    font-size: 0.9rem;
+}
+.mode-notification {
+    bottom: 80px;
+    left: 20px;
+    background: linear-gradient(135deg, #ff6b35, #ff8c5a);
+}
+.like-notification {
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    z-index: 1000;
+}
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0f1419;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+#loading-screen div:first-child {
+    width: 80px;
+    height: 80px;
+    border: 4px solid #2a2f35;
+    border-top: 4px solid #ff6b35;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+#loading-screen div:last-child {
+    margin-top: 20px;
+    color: #ff6b35;
+    font-family: 'Racing Sans One', cursive;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+body.loading {
+    overflow: hidden;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
