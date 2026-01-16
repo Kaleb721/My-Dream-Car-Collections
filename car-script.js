@@ -95,4 +95,73 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => welcomeMsg.remove(), 500);
         }, 4000);
     }
+      function initializeAllFeatures() {
+        console.log("Car Collection Website Initialized!");
+        function updateVisitorCounter() {
+            if (!sessionStorage.getItem('visitorCounted')) {
+                let count = localStorage.getItem('carSiteVisitorCount') || 0;
+                count = parseInt(count) + 1;
+                localStorage.setItem('carSiteVisitorCount', count);
+                sessionStorage.setItem('visitorCounted', 'true');
+            }
+            const currentCount = localStorage.getItem('carSiteVisitorCount') || '0';
+            const footer = document.querySelector('footer');
+            if (footer && !document.getElementById('visitorCounter')) {
+                const counterSpan = document.createElement('span');
+                counterSpan.id = 'visitorCounter';
+                counterSpan.textContent = `👁️ Total Unique Visitors: ${currentCount}`;
+                footer.appendChild(counterSpan);
+            }
+        }
+        updateVisitorCounter();
+        const cars = [
+            { id: 'jesko', name: 'Koenigsegg Jesko' },
+            { id: 'gtr', name: 'Nissan GTR R35' },
+            { id: 'urus', name: 'Lamborghini Urus' },
+            { id: 'charger', name: '1970 Dodge Charger' }
+        ];
+        if (!localStorage.getItem('carLikes')) {
+            const initialLikes = {};
+            cars.forEach(car => initialLikes[car.id] = 0);
+            localStorage.setItem('carLikes', JSON.stringify(initialLikes));
+        }
+        function addLikeButtons() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                if (index < cars.length && !section.querySelector('.like-container')) {
+                    const car = cars[index];
+                    const carLikes = JSON.parse(localStorage.getItem('carLikes'));
+                    const userLikes = JSON.parse(localStorage.getItem('userCarLikes') || '{}');
+                    const hasLiked = userLikes[car.id] || false;
+                    const container = document.createElement('div');
+                    container.className = 'like-container';
+                    const likeButton = document.createElement('button');
+                    likeButton.className = `like-button ${hasLiked ? 'liked' : ''}`;
+                    likeButton.dataset.carId = car.id;
+                    likeButton.innerHTML = `
+                        <span class="like-icon">${hasLiked ? '❤️' : '🤍'}</span>
+                        <span class="like-text">${hasLiked ? 'Liked' : 'Like'}</span>
+                    `;
+                    
+                    likeButton.addEventListener('click', function() {
+                        handleLikeClick(car.id, car.name);
+                    });
+                    const likesCounter = document.createElement('div');
+                    likesCounter.className = 'likes-counter';
+                    likesCounter.innerHTML = `
+                        <span>${carLikes[car.id]}</span>
+                        <span>likes</span>
+                    `;
+                    container.appendChild(likeButton);
+                    container.appendChild(likesCounter);
+                    const carImage = section.querySelector('.car-display-img');
+                    if (carImage) {
+                        carImage.parentNode.insertBefore(container, carImage.nextSibling);
+                    } else {
+                        section.appendChild(container);
+                    }
+                }
+            });
+            updateTotalLikes();
+        }}
 });
