@@ -330,5 +330,86 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 3000);
             }
         } 
+          document.querySelectorAll('img:not(.logo):not(.youtube-links img)').forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', function() {
+                openImageModal(this.src, this.alt);
+            });
+        });
+        function openImageModal(src, alt) {
+            const modal = document.createElement('div');
+            modal.id = 'imageModal';
+            const modalContent = document.createElement('div');
+            modalContent.style.position = 'relative';
+            modalContent.style.maxWidth = '90%';
+            modalContent.style.maxHeight = '90%';
+            const modalImg = document.createElement('img');
+            modalImg.src = src;
+            modalImg.alt = alt;
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '&times;';
+            closeBtn.addEventListener('click', function() {
+                modal.style.opacity = '0';
+                setTimeout(() => modal.remove(), 300);
+            });
+            const caption = document.createElement('div');
+            caption.textContent = alt;
+            modalContent.appendChild(closeBtn);
+            modalContent.appendChild(modalImg);
+            modalContent.appendChild(caption);
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+            setTimeout(() => modal.style.opacity = '1', 10);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.opacity = '0';
+                    setTimeout(() => modal.remove(), 300);
+                }
+            });
+            document.addEventListener('keydown', function closeModal(e) {
+                if (e.key === 'Escape') {
+                    modal.style.opacity = '0';
+                    setTimeout(() => {
+                        modal.remove();
+                        document.removeEventListener('keydown', closeModal);
+                    }, 300);
+                }
+            });
+        }
+        const performanceTable = document.querySelector('.performance-table');
+        if (performanceTable) {
+            const headers = performanceTable.querySelectorAll('th');
+            
+            headers.forEach((header, index) => {
+                if (index > 0) { 
+                    header.style.cursor = 'pointer';
+                    header.innerHTML += ' <span style="font-size:0.8rem;">↕</span>';
+                    
+                    header.addEventListener('click', function() {
+                        sortTable(index);
+                    });
+                }
+            });
+            function sortTable(columnIndex) {
+                const tbody = performanceTable.querySelector('tbody');
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+                const isNumeric = columnIndex === 1 || columnIndex === 2; 
+                rows.sort((a, b) => {
+                    let aValue = a.cells[columnIndex].textContent;
+                    let bValue = b.cells[columnIndex].textContent;
+                    if (isNumeric) {
+                        aValue = parseFloat(aValue.replace(/[^\d.]/g, ''));
+                        bValue = parseFloat(bValue.replace(/[^\d.]/g, ''));
+                        return aValue - bValue;
+                    } else {
+                        return aValue.localeCompare(bValue);
+                    }
+                });
+                if (JSON.stringify(rows) === JSON.stringify(Array.from(tbody.querySelectorAll('tr')))) {
+                    rows.reverse();
+                }
+                rows.forEach(row => tbody.appendChild(row));
+            }
+        }
     }
 });

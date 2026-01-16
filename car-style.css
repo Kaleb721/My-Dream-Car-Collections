@@ -455,3 +455,75 @@ body.loading {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+#welcome-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background: linear-gradient(135deg, #ff6b35, #ff8c5a);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+    z-index: 1000;
+    transform: translateX(150%);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.like-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.like-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #ff6b35;
+    background: linear-gradient(135deg, #2a2f35, #1a2029);
+    color: white;
+}
+.like-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+.like-button.liked {
+    background: linear-gradient(135deg, #ff3b30, #ff5252);
+    border-color: #ff3b30;
+}
+.likes-counter span:first-child {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff6b35;
+}
+.likes-counter span:last-child {
+    color: #b0b0b0;
+    margin-left: 5px;
+}
+.form-message {
+    padding: 15px;
+    border-radius: 6px;
+    margin: 20px 0;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.success-message {
+    background: linear-gradient(to right, #4CAF50, #45a049);
+    color: white;
+}
+.error-message {
+    background: linear-gradient(to right, #ff3b30, #ff5252);
+    color: white;
+}
+.error-message span {
+    color: #ff3b30;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: block;
+}
