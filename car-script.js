@@ -461,5 +461,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 nav.parentNode.insertBefore(carOfTheDay, nav.nextSibling);
             }
         }
+           const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(section);
+        });
+        document.querySelectorAll('footer p').forEach(span => {
+            span.innerHTML = span.innerHTML.replace('2025', new Date().getFullYear());
+        });
+        localStorage.setItem('lastVisit', new Date().toISOString());
     }
 });
