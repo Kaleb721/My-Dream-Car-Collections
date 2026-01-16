@@ -292,6 +292,43 @@ document.addEventListener('DOMContentLoaded', function() {
                     showFormMessage('error', `<h3>⚠️ Please fix the following errors:</h3><ul>${errorMessages.map(error => `<li>${error}</li>`).join('')}</ul>`);
                 }
             });
-        }  
+        }
+         function highlightError(element, message) {
+            element.style.borderColor = '#ff3b30';
+            element.style.borderWidth = '2px';
+            const existingError = element.nextElementSibling;
+            if (existingError && existingError.classList.contains('error-message')) {
+                existingError.remove();
+            }
+            const errorSpan = document.createElement('span');
+            errorSpan.className = 'error-message';
+            errorSpan.textContent = message;
+            element.parentNode.insertBefore(errorSpan, element.nextSibling);
+        }
+        function removeError(element) {
+            element.style.borderColor = '';
+            element.style.borderWidth = '';
+            
+            const existingError = element.nextElementSibling;
+            if (existingError && existingError.classList.contains('error-message')) {
+                existingError.remove();
+            }
+        }
+        function showFormMessage(type, html) {
+            document.querySelectorAll('.form-message').forEach(msg => msg.remove());
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `form-message ${type}-message`;
+            messageDiv.innerHTML = html;
+            const form = document.querySelector('form');
+            if (type === 'error') {
+                form.parentNode.insertBefore(messageDiv, form);
+            } else {
+                form.parentNode.insertBefore(messageDiv, form.nextSibling);
+                setTimeout(() => {
+                    messageDiv.style.opacity = '0';
+                    setTimeout(() => messageDiv.remove(), 1000);
+                }, 3000);
+            }
+        } 
     }
 });
