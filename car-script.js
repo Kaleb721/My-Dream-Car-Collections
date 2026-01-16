@@ -411,5 +411,55 @@ document.addEventListener('DOMContentLoaded', function() {
                 rows.forEach(row => tbody.appendChild(row));
             }
         }
+             const mainHeader = document.querySelector('h1');
+        if (mainHeader && mainHeader.textContent.includes('My Dream Car Collection')) {
+            const cars = [
+                {
+                    name: "Koenigsegg Jesko",
+                    description: "Experience the pinnacle of hypercar engineering",
+                    color: "#FF3B30"
+                },
+                {
+                    name: "Nissan GTR R35",
+                    description: "Godzilla - The legendary Japanese performance icon",
+                    color: "#0066CC"
+                },
+                {
+                    name: "Lamborghini Urus",
+                    description: "Supercar performance meets SUV practicality",
+                    color: "#FFCC00"
+                },
+                {
+                    name: "1970 Dodge Charger",
+                    description: "American muscle at its finest",
+                    color: "#8B0000"
+                }
+            ];
+            const randomCar = cars[Math.floor(Math.random() * cars.length)];
+            const carOfTheDay = document.createElement('div');
+            carOfTheDay.className = 'car-of-the-day';
+            const isLightMode = document.body.classList.contains('light-mode');
+            carOfTheDay.style.borderLeftColor = randomCar.color;
+            carOfTheDay.style.background = `linear-gradient(135deg, ${randomCar.color}22, ${isLightMode ? '#ffffff' : '#1a2029'})`;
+            carOfTheDay.innerHTML = `
+                <h3 style="color: ${randomCar.color}; margin-bottom: 10px;">
+                    🏆 Car of the Day: ${randomCar.name}
+                </h3>
+                <p style="color: ${isLightMode ? '#444' : '#e0e0e0'};">
+                    ${randomCar.description}
+                </p>
+                <small style="color: ${isLightMode ? '#666' : '#b0b0b0'};">
+                    Refresh page to see a different featured car!
+                </small>
+            `;
+            const nav = document.querySelector('nav');
+            if (nav) {
+                const existingCarOfDay = document.querySelector('.car-of-the-day');
+                if (existingCarOfDay) {
+                    existingCarOfDay.remove();
+                }
+                nav.parentNode.insertBefore(carOfTheDay, nav.nextSibling);
+            }
+        }
     }
 });
